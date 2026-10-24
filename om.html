@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Månadskalender | Kalender Gratis</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">Kalender Gratis</a>
+
+      <button
+        type="button"
+        class="menu-button"
+        aria-label="Öppna meny"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        Meny
+      </button>
+
+      <nav id="main-navigation" aria-label="Huvudnavigation">
+        <ul>
+          <li><a href="index.html">Månad</a></li>
+          <li><a href="arskalender.html">År</a></li>
+          <li><a href="om.html" aria-current="page">Om &amp; kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+    <section class="about" aria-labelledby="about-heading">
+        <h1 id="about-heading">Om Kalender Gratis</h1>
+
+        <p>
+        Kalender Gratis är en avskalad svensk kalendertjänst för dig som
+        snabbt vill få en tydlig överblick över månaden eller året.
+        </p>
+    </section>
+
+    <section class="features" aria-labelledby="features-heading">
+        <h2 id="features-heading">Funktioner</h2>
+
+        <div class="feature-list">
+        <article>
+            <h3>Månadsvy</h3>
+            <p>
+            Se aktuell månad direkt och navigera mellan tidigare och
+            kommande månader.
+            </p>
+        </article>
+
+        <article>
+            <h3>Årsöversikt</h3>
+            <p>
+            Få en samlad överblick över årets alla tolv månader.
+            </p>
+        </article>
+
+        <article>
+            <h3>Enkel på alla skärmar</h3>
+            <p>
+            Kalendern anpassas för både mobil, surfplatta och dator.
+            </p>
+        </article>
+        </div>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-heading">
+        <div class="contact-details">
+        <h2 id="contact-heading">Kontakta oss</h2>
+
+        <p>
+            E-post:
+            <a href="mailto:kontakt@kalender.gratis">
+            kontakt@kalender.gratis
+            </a>
+        </p>
+
+        <p>
+            Telefon:
+            <a href="tel:+46101234567">010-123 45 67</a>
+        </p>
+        </div>
+
+        <form id="contact-form" novalidate>
+        <h2>Skicka ett meddelande</h2>
+
+        <div>
+            <label for="name">Namn</label>
+            <input type="text" id="name" name="name">
+            <p id="name-error" class="error-message"></p>
+        </div>
+
+        <div>
+            <label for="email">E-postadress</label>
+            <input type="email" id="email" name="email">
+            <p id="email-error" class="error-message"></p>
+        </div>
+
+        <div>
+            <label for="message">Meddelande</label>
+            <textarea id="message" name="message"></textarea>
+            <p id="message-error" class="error-message"></p>
+        </div>
+
+        <button type="submit">Skicka</button>
+
+        <p id="form-feedback" aria-live="polite"></p>
+        </form>
+    </section>
+    </main>
+
+    <footer>
+      <p>Kalender Gratis</p>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/kalender.js"></script>
+  </body>
+</html>

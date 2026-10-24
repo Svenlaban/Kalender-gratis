@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Månadskalender | Kalender Gratis</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">Kalender Gratis</a>
+
+      <button
+        type="button"
+        class="menu-button"
+        aria-label="Öppna meny"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        Meny
+      </button>
+
+      <nav id="main-navigation" aria-label="Huvudnavigation">
+        <ul>
+          <li><a href="index.html" aria-current="page">Månad</a></li>
+          <li><a href="arskalender.html">År</a></li>
+          <li><a href="om.html">Om &amp; kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="month-calendar" aria-labelledby="month-heading">
+        <div class="calendar-controls">
+          <button type="button" id="previous-month">
+            Föregående
+          </button>
+
+          <h1 id="month-heading">September 2026</h1>
+
+          <button type="button" id="next-month">
+            Nästa
+          </button>
+        </div>
+
+        <div id="calendar" class="calendar-grid">
+          <!-- Kalendern skapas senare med js -->
+        </div>
+      </section>
+
+      <section class="introduction" aria-labelledby="introduction-heading">
+        <h2 id="introduction-heading">En kalender utan distraktioner</h2>
+
+        <p>
+          Kalender Gratis ger dig en tydlig överblick över månaden utan
+          annonser och onödigt innehåll.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Kalender Gratis</p>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/kalender.js"></script>
+  </body>
+</html>

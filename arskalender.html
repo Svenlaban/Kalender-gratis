@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Årskalender | Kalender Gratis</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">Kalender Gratis</a>
+
+      <button
+        type="button"
+        class="menu-button"
+        aria-label="Öppna meny"
+        aria-expanded="false"
+        aria-controls="main-navigation"
+      >
+        Meny
+      </button>
+
+      <nav id="main-navigation" aria-label="Huvudnavigation">
+        <ul>
+          <li><a href="index.html">Månad</a></li>
+          <li><a href="arskalender.html" aria-current="page">År</a></li>
+          <li><a href="om.html">Om &amp; kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+    <section class="year-calendar" aria-labelledby="year-heading">
+        <div class="calendar-controls">
+        <button type="button" id="previous-year">
+            Föregående år
+        </button>
+
+        <h1 id="year-heading">2026</h1>
+
+        <button type="button" id="next-year">
+            Nästa år
+        </button>
+        </div>
+
+        <div id="year-grid" class="year-grid">
+        <!-- Årets månader skapas senare med js-->
+        </div>
+    </section>
+    </main>
+
+    <footer>
+      <p>Kalender Gratis</p>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/kalender.js"></script>
+  </body>
+</html>

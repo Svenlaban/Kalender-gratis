@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="sv">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
 
     <title>Månadskalender | Kalender Gratis</title>
   </head>
@@ -35,14 +35,20 @@
     <main>
       <section class="month-calendar" aria-labelledby="month-heading">
         <div class="calendar-controls">
-          <button type="button" id="previous-month">
-            Föregående
+          <button
+            type="button"
+            id="previous-month"
+            aria-label="Visa föregående månad"
+          >
+            <span class="button-arrow" aria-hidden="true">&lsaquo;</span>
+            <span class="button-text">Föregående</span>
           </button>
 
           <h1 id="month-heading">September 2026</h1>
 
-          <button type="button" id="next-month">
-            Nästa
+          <button type="button" id="next-month" aria-label="Visa nästa månad">
+            <span class="button-text">Nästa</span>
+             <span class="button-arrow" aria-hidden="true">&rsaquo;</span>
           </button>
         </div>
 
@@ -55,25 +61,25 @@
         <h2 id="introduction-heading">En kalender utan distraktioner</h2>
 
         <p>
-          Kalender Gratis ger dig en tydlig överblick över månaden utan
-          annonser och onödigt innehåll.
+          Kalender Gratis ger dig en tydlig överblick över månaden utan annonser
+          och onödigt innehåll.
         </p>
       </section>
     </main>
 
     <footer>
-        <p>Kalender Gratis</p>
-        <p>En enkel kalender utan onödiga distraktioner.</p>
+      <p>Kalender Gratis</p>
+      <p>En enkel kalender utan onödiga distraktioner.</p>
 
-        <nav aria-label="Sidfotsnavigation">
-            <ul>
-            <li><a href="index.html">Månad</a></li>
-            <li><a href="arskalender.html">Årskalender</a></li>
-            <li><a href="om.html">Om och kontakt</a></li>
-            </ul>
-        </nav>
+      <nav aria-label="Sidfotsnavigation">
+        <ul>
+          <li><a href="index.html">Månad</a></li>
+          <li><a href="arskalender.html">Årskalender</a></li>
+          <li><a href="om.html">Om och kontakt</a></li>
+        </ul>
+      </nav>
 
-        <p>&copy; 2026 Kalender Gratis</p>
+      <p>&copy; 2026 Kalender Gratis</p>
     </footer>
 
     <script src="js/navigation.js"></script>

@@ -132,6 +132,11 @@ footer a:focus-visible {
   text-decoration: underline;
 }
 
+/* Döljer knapptexterna i mobilversionen */
+.button-text {
+  display: none;
+}
+
 /* Desktop */
 
 @media (min-width: 768px) {
@@ -146,5 +151,16 @@ footer a:focus-visible {
 
   header nav ul {
     display: flex;
+  }
+
+  /* Visar knapptexterna på större skärmar */
+  .button-text {
+    display: inline;
+  }
+
+  .calendar-controls button {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
   }
 }

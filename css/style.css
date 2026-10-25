@@ -137,6 +137,118 @@ footer a:focus-visible {
   display: none;
 }
 
+/* Sidans huvudinnehåll */
+
+main {
+  padding: 1rem;
+}
+
+/* Månadskalender */
+
+.month-calendar {
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-surface);
+}
+
+.calendar-controls {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.calendar-controls h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.calendar-controls button {
+  display: flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: var(--color-button);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.calendar-controls button:hover,
+.calendar-controls button:focus-visible {
+  background-color: var(--color-accent);
+}
+
+.button-arrow {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Kalenderrutnät */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 2rem repeat(7, 1fr);
+  border-top: 1px solid var(--color-border);
+}
+
+.weekday,
+.week-number,
+.calendar-day {
+  display: grid;
+  min-width: 0;
+  min-height: 3rem;
+  place-items: center;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.weekday {
+  min-height: 2.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.week-label,
+.week-number {
+  background-color: var(--color-week);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.weekend {
+  background-color: var(--color-weekend);
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+/* Introduktion */
+
+.introduction {
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.introduction h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.introduction p {
+  margin-bottom: 0;
+}
+
 /* Desktop */
 
 @media (min-width: 768px) {

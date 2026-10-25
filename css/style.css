@@ -100,3 +100,51 @@ header nav a[aria-current="page"] {
   color: var(--color-accent);
   font-weight: bold;
 }
+
+/* Footer */
+
+footer {
+  padding: 2rem 1rem;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  text-align: center;
+}
+
+footer p {
+  margin: 0 0 0.75rem;
+}
+
+footer ul {
+  margin-bottom: 1.5rem;
+}
+
+footer li {
+  margin-bottom: 0.5rem;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* Desktop */
+
+@media (min-width: 768px) {
+  .menu-button {
+    display: none;
+  }
+
+  header nav {
+    display: block;
+    grid-column: auto;
+  }
+
+  header nav ul {
+    display: flex;
+  }
+}

@@ -1,0 +1,102 @@
+:root {
+  --color-primary: #173b45;
+  --color-background: #f5f2ea;
+  --color-surface: #ffffff;
+  --color-weekend: #eef4f5;
+  --color-week: #f2f5f5;
+  --color-border: #cbd5d6;
+  --color-button: #e5eaeb;
+  --color-accent: #d99a3d;
+  --color-text: #1b2528;
+  --color-muted: #8a999d;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Header och mobilnavigation */
+
+header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.logo {
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--color-accent);
+}
+
+.menu-button {
+  margin-right: 1rem;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+header nav {
+  display: none;
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--color-border);
+}
+
+header nav.open {
+  display: block;
+}
+
+header nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+header nav a:hover,
+header nav a:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+header nav a[aria-current="page"] {
+  color: var(--color-accent);
+  font-weight: bold;
+}

@@ -211,6 +211,14 @@ main {
   border-bottom: 1px solid var(--color-border);
 }
 
+.weekday-short {
+  display: inline;
+}
+
+.weekday-full {
+  display: none;
+}
+
 .weekday {
   min-height: 2.5rem;
   font-size: 0.8rem;
@@ -271,8 +279,20 @@ main {
   }
 
   .calendar-controls button {
-    display: flex;
     gap: 0.5rem;
-    align-items: center;
+  }
+  
+  /* Visar fullständiga namn på veckodagar på desktop */
+
+  .weekday-short {
+    display: none;
+  }
+
+  .weekday-full {
+    display: inline;
+  }
+
+  .calendar-grid {
+    grid-template-columns: 4rem repeat(7, 1fr);
   }
 }

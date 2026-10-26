@@ -263,6 +263,65 @@ main {
   margin-bottom: 0;
 }
 
+/* Årskalender */
+
+.year-calendar {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.year-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.year-month {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-surface);
+}
+
+.year-month h2 {
+  margin: 0;
+  padding: 0.75rem;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.year-month-grid {
+  display: grid;
+  grid-template-columns: 1.75rem repeat(7, 1fr);
+  border-top: 1px solid var(--color-border);
+}
+
+.year-weekday,
+.year-week-number,
+.year-day {
+  display: grid;
+  min-width: 0;
+  min-height: 2rem;
+  place-items: center;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.75rem;
+}
+
+.year-weekday {
+  font-weight: bold;
+}
+
+.year-week-number {
+  background-color: var(--color-week);
+  color: var(--color-muted);
+  font-size: 0.7rem;
+}
+
+.year-month-grid > :nth-child(8n) {
+  border-right: 0;
+}
+
 /* Desktop */
 
 @media (min-width: 768px) {

@@ -360,4 +360,45 @@ main {
   .calendar-grid {
     grid-template-columns: 4rem repeat(7, 1fr);
   }
+
+  main {
+    padding: 2rem;
+  }
+
+  /* Månadskalender */
+
+  .calendar-controls {
+    padding: 1.5rem;
+  }
+
+  .calendar-controls h1 {
+    font-size: 1.75rem;
+  }
+
+  .calendar-day {
+    min-height: 6rem;
+    align-items: start;
+    justify-items: end;
+    padding: 0.75rem;
+  }
+
+  .weekday {
+    min-height: 3rem;
+    font-size: 0.9rem;
+  }
+
+  /* Årskalender */
+
+  .year-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Visar tre kolumner av årskalender på bredare skärmar  */
+
+@media (min-width: 1100px) {
+  .year-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

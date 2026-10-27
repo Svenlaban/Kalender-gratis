@@ -33,10 +33,29 @@ const weekdayNames = [
   { short: "Sön", full: "Söndag" },
 ];
 
-// Anger vilken månad som visas
+// Anger dagens datum
 const today = new Date();
+
+// Läser eventuellt år och månad från webbadressen
+const urlParameters = new URLSearchParams(window.location.search);
+const requestedYear = Number(urlParameters.get("year"));
+const requestedMonth = Number(urlParameters.get("month"));
+
+// Visar dagens år och månad som standard
 let displayedYear = today.getFullYear();
 let displayedMonth = today.getMonth();
+
+// Använder året och månaden från länken om värdena är giltiga
+if (
+  Number.isInteger(requestedYear) &&
+  Number.isInteger(requestedMonth) &&
+  requestedYear > 0 &&
+  requestedMonth >= 1 &&
+  requestedMonth <= 12
+) {
+  displayedYear = requestedYear;
+  displayedMonth = requestedMonth - 1;
+}
 
 /**
  * Räknar ut ISO-veckonumret för ett datum.

@@ -59,8 +59,14 @@ function createMonthCalendar(month) {
 
   monthSection.classList.add("year-month");
   monthGrid.classList.add("year-month-grid");
-  monthHeading.textContent = monthNames[month];
 
+  // Skapar en länk till månaden i månadskalendern
+  const monthLink = document.createElement("a");
+
+  monthLink.textContent = monthNames[month];
+  monthLink.href = "index.html?year=" + displayedYear + "&month=" + (month + 1);
+
+  monthHeading.appendChild(monthLink);
   monthSection.appendChild(monthHeading);
 
   // Skapar rubrikraden med veckodagar

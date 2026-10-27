@@ -338,6 +338,7 @@ main {
   header nav {
     display: block;
     grid-column: auto;
+    border-top: 0;
   }
 
   header nav ul {

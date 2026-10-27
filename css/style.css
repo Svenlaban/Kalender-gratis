@@ -60,10 +60,6 @@ header {
   text-decoration: none;
 }
 
-.logo span {
-  color: var(--color-accent);
-}
-
 .menu-button {
   margin-right: 1rem;
   padding: 0.4rem 0.6rem;
@@ -320,6 +316,16 @@ main {
 
 .year-month-grid > :nth-child(8n) {
   border-right: 0;
+}
+
+.logo {
+  display: block;
+  padding: 0.75rem 1rem;
+}
+
+.logo img {
+  width: 180px;
+  height: auto;
 }
 
 /* Desktop */

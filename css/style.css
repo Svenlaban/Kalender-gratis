@@ -54,10 +54,14 @@ header {
 }
 
 .logo {
-  padding: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
+  display: block;
+  padding: 0.75rem 1rem;
   text-decoration: none;
+}
+
+.logo img {
+  width: 180px;
+  height: auto;
 }
 
 .menu-button {
@@ -335,16 +339,6 @@ main {
 
 .year-month-grid > :nth-child(8n) {
   border-right: 0;
-}
-
-.logo {
-  display: block;
-  padding: 0.75rem 1rem;
-}
-
-.logo img {
-  width: 180px;
-  height: auto;
 }
 
 /* Desktop */

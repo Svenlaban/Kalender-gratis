@@ -24,9 +24,19 @@ const monthNames = [
 
 const weekdayNames = ["V", "M", "T", "O", "T", "F", "L", "S"];
 
-// Anger vilket år som visas
 const today = new Date();
+
+// Läser eventuellt år från webbadressen
+const urlParameters = new URLSearchParams(window.location.search);
+const requestedYear = Number(urlParameters.get("year"));
+
+// Visar aktuellt år som standard
 let displayedYear = today.getFullYear();
+
+// Använder året från länken om värdet är giltigt
+if (Number.isInteger(requestedYear) && requestedYear > 0) {
+  displayedYear = requestedYear;
+}
 
 /**
  * Räknar ut ISO-veckonumret för ett datum.

@@ -164,6 +164,19 @@ main {
   text-align: center;
 }
 
+.calendar-controls h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.calendar-controls h1 a:hover,
+.calendar-controls h1 a:focus-visible,
+.year-month h2 a:hover,
+.year-month h2 a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 .calendar-controls button {
   display: flex;
   min-width: 2.75rem;
@@ -280,10 +293,16 @@ main {
 
 .year-month h2 {
   margin: 0;
-  padding: 0.75rem;
   color: var(--color-primary);
   font-size: 1.1rem;
   text-align: center;
+}
+
+.year-month h2 a {
+  display: block;
+  padding: 0.75rem;
+  color: inherit;
+  text-decoration: none;
 }
 
 .year-month-grid {

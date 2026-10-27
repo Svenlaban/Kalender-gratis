@@ -2,7 +2,7 @@
 
 // Hämtar kalenderns element från HTML
 const calendar = document.querySelector("#calendar");
-const monthHeading = document.querySelector("#month-heading");
+const yearLink = document.querySelector("#year-link");
 const previousMonthButton = document.querySelector("#previous-month");
 const nextMonthButton = document.querySelector("#next-month");
 
@@ -83,8 +83,9 @@ function renderCalendar() {
   // Tar bort den tidigare kalendern
   calendar.innerHTML = "";
 
-  // Uppdaterar rubriken med den månad som visas
-  monthHeading.textContent = monthNames[displayedMonth] + " " + displayedYear;
+  // Uppdaterar rubriken och länken till rätt årskalender
+  yearLink.textContent = monthNames[displayedMonth] + " " + displayedYear;
+  yearLink.href = "arskalender.html?year=" + displayedYear;
 
   // Skapar rubrikraden med veckodagar
   for (let index = 0; index < weekdayNames.length; index++) {

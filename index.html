@@ -59,6 +59,23 @@
         </div>
 
         <div id="calendar" class="calendar-grid">
+          <ul
+            class="calendar-legend"
+            aria-label="Förklaring till kalenderns markeringar"
+          >
+            <li>
+              <span
+                class="legend-marker public-marker"
+                aria-hidden="true"
+              ></span>
+              Röd dag
+            </li>
+
+            <li>
+              <span class="legend-marker eve-marker" aria-hidden="true"></span>
+              Högtidsafton
+            </li>
+          </ul>
           <!-- Kalendern skapas med js -->
         </div>
       </section>
@@ -89,6 +106,7 @@
     </footer>
 
     <script src="js/navigation.js"></script>
+    <script src="js/helgdagar.js"></script>
     <script src="js/kalender.js"></script>
   </body>
 </html>

@@ -259,6 +259,32 @@ main {
   font-weight: bold;
 }
 
+/* Markerar officiella röda dagar */
+
+/* Markerar officiella röda dagar */
+
+.public-holiday {
+  background-color: #fbe9e7;
+  color: #8f1d14;
+  box-shadow: inset 0 0.25rem 0 #b42318;
+  font-weight: bold;
+}
+
+/* Markerar högtidsaftnar som inte är officiella röda dagar */
+
+.holiday-eve {
+  background-color: #fff4d6;
+  color: #6b4700;
+  box-shadow: inset 0 0.25rem 0 var(--color-accent);
+  font-weight: bold;
+}
+
+/* Döljer helgdagens namn i den mindre mobilvyn */
+
+.holiday-name {
+  display: none;
+}
+
 /* Introduktion */
 
 .introduction {
@@ -494,6 +520,37 @@ main {
   font-weight: bold;
 }
 
+/* Förklaring till kalenderns färgmarkeringar */
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8rem;
+}
+
+.calendar-legend li {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.legend-marker {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 0.2rem;
+}
+
+.public-marker {
+  background-color: #b42318;
+}
+
+.eve-marker {
+  background-color: var(--color-accent);
+}
+
 /* Desktop */
 
 @media (min-width: 768px) {
@@ -576,6 +633,17 @@ main {
   .contact {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+  }
+
+  /* Visar helgdagarnas namn i större kalenderceller */
+
+  .holiday-name {
+    display: block;
+    max-width: 100%;
+    font-size: 0.7rem;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: right;
   }
 }
 

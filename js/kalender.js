@@ -57,6 +57,25 @@ if (
   displayedMonth = requestedMonth - 1;
 }
 
+// Innehåller årets hämtade helgdagar
+let holidays = [];
+
+// Dessa högtidsaftnar är inte officiella röda dagar
+const holidayEves = ["Midsommarafton", "Julafton", "Nyårsafton"];
+
+/**
+ * Omvandlar ett datum till formatet ÅÅÅÅ-MM-DD.
+ * @param {Date} date
+ * @returns {string}
+ */
+function formatDateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 /**
  * Räknar ut ISO-veckonumret för ett datum.
  * @param {Date} date
@@ -116,7 +135,7 @@ function renderCalendar() {
     calendar.appendChild(weekday);
   }
 
-  // Hämtar månadens första och sista datum
+  // Hämtar månadens första
   const firstDayOfMonth = new Date(displayedYear, displayedMonth, 1);
 
   // Räknar ut hur många dagar kalendern ska backa till måndagen
@@ -142,7 +161,48 @@ function renderCalendar() {
       const dayElement = document.createElement("div");
 
       dayElement.classList.add("calendar-day");
-      dayElement.textContent = calendarDate.getDate();
+
+      const dayNumber = document.createElement("span");
+      dayNumber.classList.add("day-number");
+      dayNumber.textContent = calendarDate.getDate();
+
+      dayElement.appendChild(dayNumber);
+
+      // Kontrollerar om datumet är en svensk helg- eller högtidsdag
+      const dateKey = formatDateKey(calendarDate);
+      const holiday = holidays.find(function (item) {
+        return item.date === dateKey;
+      });
+
+      if (holiday && calendarDate.getMonth() === displayedMonth) {
+        const holidayName = document.createElement("span");
+
+        holidayName.classList.add("holiday-name");
+        holidayName.textContent = holiday.localName;
+
+        dayElement.appendChild(holidayName);
+
+        dayElement.title = holiday.localName;
+
+        const readableDate = calendarDate.toLocaleDateString("sv-SE", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+
+        dayElement.setAttribute(
+          "aria-label",
+          readableDate + ", " + holiday.localName,
+        );
+
+        // Högtidsaftnar markeras separat från officiella röda dagar
+        if (holidayEves.includes(holiday.localName)) {
+          dayElement.classList.add("holiday-eve");
+        } else {
+          dayElement.classList.add("public-holiday");
+        }
+      }
 
       // Markerar datum från föregående eller nästa månad
       if (calendarDate.getMonth() !== displayedMonth) {
@@ -171,6 +231,20 @@ function renderCalendar() {
   }
 }
 
+/**
+ * Hämtar helgdagar och uppdaterar kalendern.
+ */
+async function updateCalendar() {
+  try {
+    holidays = await loadPublicHolidays(displayedYear);
+  } catch (error) {
+    console.error(error);
+    holidays = [];
+  }
+
+  renderCalendar();
+}
+
 // Visar föregående månad
 previousMonthButton.addEventListener("click", function () {
   displayedMonth--;
@@ -181,7 +255,7 @@ previousMonthButton.addEventListener("click", function () {
     displayedYear--;
   }
 
-  renderCalendar();
+  updateCalendar();
 });
 
 // Visar nästa månad
@@ -194,8 +268,8 @@ nextMonthButton.addEventListener("click", function () {
     displayedYear++;
   }
 
-  renderCalendar();
+  updateCalendar();
 });
 
-// Skapar kalendern när sidan öppnas
-renderCalendar();
+// Hämtar helgdagar och skapar kalendern när sidan öppnas
+updateCalendar();

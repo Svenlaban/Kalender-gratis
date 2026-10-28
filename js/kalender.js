@@ -60,6 +60,9 @@ if (
 // Innehåller årets hämtade helgdagar
 let holidays = [];
 
+// Innehåller årets hämtade namnsdagar
+let nameDays = [];
+
 // Dessa högtidsaftnar är inte officiella röda dagar
 const holidayEves = ["Midsommarafton", "Julafton", "Nyårsafton"];
 
@@ -174,6 +177,10 @@ function renderCalendar() {
         return item.date === dateKey;
       });
 
+      const nameDay = nameDays.find(function (item) {
+        return item.datum === dateKey;
+      });
+
       if (holiday && calendarDate.getMonth() === displayedMonth) {
         const holidayName = document.createElement("span");
 
@@ -204,6 +211,43 @@ function renderCalendar() {
         }
       }
 
+      // Visar namnsdagar för datum som tillhör den aktuella månaden
+      if (
+        nameDay &&
+        nameDay.namnsdag.length > 0 &&
+        calendarDate.getMonth() === displayedMonth
+      ) {
+        const nameDayElement = document.createElement("span");
+        const names = nameDay.namnsdag.join(", ");
+
+        nameDayElement.classList.add("nameday-name");
+        nameDayElement.textContent = names;
+
+        dayElement.appendChild(nameDayElement);
+
+        // Kompletterar verktygstipset med namnsdagen
+        if (dayElement.title !== "") {
+          dayElement.title += " – Namnsdag: " + names;
+        } else {
+          dayElement.title = "Namnsdag: " + names;
+        }
+
+        // Kompletterar den tillgängliga beskrivningen
+        const existingLabel =
+          dayElement.getAttribute("aria-label") ||
+          calendarDate.toLocaleDateString("sv-SE", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          });
+
+        dayElement.setAttribute(
+          "aria-label",
+          existingLabel + ". Namnsdag: " + names,
+        );
+      }
+
       // Markerar datum från föregående eller nästa månad
       if (calendarDate.getMonth() !== displayedMonth) {
         dayElement.classList.add("muted");
@@ -232,14 +276,23 @@ function renderCalendar() {
 }
 
 /**
- * Hämtar helgdagar och uppdaterar kalendern.
+ * Hämtar helgdagar/namnsdagar och uppdaterar kalendern.
  */
 async function updateCalendar() {
+  // Hämtar officiella helg- och högtidsdagar
   try {
     holidays = await loadPublicHolidays(displayedYear);
   } catch (error) {
     console.error(error);
     holidays = [];
+  }
+
+  // Hämtar årets namnsdagar
+  try {
+    nameDays = await loadNameDays(displayedYear);
+  } catch (error) {
+    console.error(error);
+    nameDays = [];
   }
 
   renderCalendar();

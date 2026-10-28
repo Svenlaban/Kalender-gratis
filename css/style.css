@@ -551,6 +551,12 @@ main {
   background-color: var(--color-accent);
 }
 
+/* Döljer namnsdagarna i den mobilkalendern */
+
+.nameday-name {
+  display: none;
+}
+
 /* Desktop */
 
 @media (min-width: 768px) {
@@ -645,6 +651,18 @@ main {
     line-height: 1.2;
     text-align: right;
   }
+}
+
+/* Visar namnsdagar i månadskalenderns större datumrutor */
+
+.nameday-name {
+  display: block;
+  max-width: 100%;
+  color: var(--color-muted);
+  font-size: 0.65rem;
+  font-weight: normal;
+  line-height: 1.2;
+  text-align: right;
 }
 
 /* Visar tre kolumner av årskalender på bredare skärmar  */

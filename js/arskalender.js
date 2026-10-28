@@ -33,9 +33,28 @@ const requestedYear = Number(urlParameters.get("year"));
 // Visar aktuellt år som standard
 let displayedYear = today.getFullYear();
 
+// Innehåller årets hämtade helgdagar
+let holidays = [];
+
+// Dessa högtidsaftnar är inte officiella röda dagar
+const holidayEves = ["Midsommarafton", "Julafton", "Nyårsafton"];
+
 // Använder året från länken om värdet är giltigt
 if (Number.isInteger(requestedYear) && requestedYear > 0) {
   displayedYear = requestedYear;
+}
+
+/**
+ * Omvandlar ett datum till formatet ÅÅÅÅ-MM-DD.
+ * @param {Date} date
+ * @returns {string}
+ */
+function formatDateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
 
 /**
@@ -118,6 +137,35 @@ function createMonthCalendar(month) {
       dayElement.classList.add("year-day");
       dayElement.textContent = calendarDate.getDate();
 
+      // Kontrollerar om datumet är en svensk helg- eller högtidsdag
+      const dateKey = formatDateKey(calendarDate);
+
+      const holiday = holidays.find(function (item) {
+        return item.date === dateKey;
+      });
+
+      if (holiday && calendarDate.getMonth() === month) {
+        dayElement.title = holiday.localName;
+
+        const readableDate = calendarDate.toLocaleDateString("sv-SE", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+
+        dayElement.setAttribute(
+          "aria-label",
+          readableDate + ", " + holiday.localName,
+        );
+
+        if (holidayEves.includes(holiday.localName)) {
+          dayElement.classList.add("holiday-eve");
+        } else {
+          dayElement.classList.add("public-holiday");
+        }
+      }
+
       // Markerar datum från angränsande månader
       if (calendarDate.getMonth() !== month) {
         dayElement.classList.add("muted");
@@ -165,17 +213,31 @@ function renderYearCalendar() {
   }
 }
 
+/**
+ * Hämtar helgdagar och uppdaterar årskalendern.
+ */
+async function updateYearCalendar() {
+  try {
+    holidays = await loadPublicHolidays(displayedYear);
+  } catch (error) {
+    console.error(error);
+    holidays = [];
+  }
+
+  renderYearCalendar();
+}
+
 // Visar föregående år
 previousYearButton.addEventListener("click", function () {
   displayedYear--;
-  renderYearCalendar();
+  updateYearCalendar();
 });
 
 // Visar nästa år
 nextYearButton.addEventListener("click", function () {
   displayedYear++;
-  renderYearCalendar();
+  updateYearCalendar();
 });
 
 // Skapar årskalendern när sidan öppnas
-renderYearCalendar();
+updateYearCalendar();

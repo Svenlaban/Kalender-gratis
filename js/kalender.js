@@ -58,7 +58,7 @@ if (
 }
 
 // Innehåller årets hämtade namnsdagar
-let nameDays = [];
+let calendarData = [];
 
 /**
  * Omvandlar ett datum till formatet ÅÅÅÅ-MM-DD.
@@ -168,7 +168,7 @@ function renderCalendar() {
       // Hämtar kalenderinformationen för det aktuella datumet
       const dateKey = formatDateKey(calendarDate);
 
-      const calendarDayData = nameDays.find(function (item) {
+      const calendarDayData = calendarData.find(function (item) {
         return item.datum === dateKey;
       });
 
@@ -268,10 +268,10 @@ function renderCalendar() {
  */
 async function updateCalendar() {
   try {
-    nameDays = await loadCalendarData(displayedYear);
+    calendarData = await loadCalendarData(displayedYear);
   } catch (error) {
     console.error(error);
-    nameDays = [];
+    calendarData = [];
   }
 
   renderCalendar();

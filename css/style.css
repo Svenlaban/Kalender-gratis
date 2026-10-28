@@ -8,7 +8,7 @@
   --color-button: #e5eaeb;
   --color-accent: #d99a3d;
   --color-text: #1b2528;
-  --color-muted: #8a999d;
+  --color-muted: #596a6e;
 }
 * {
   box-sizing: border-box;
@@ -274,7 +274,11 @@ main {
   font-weight: bold;
 }
 
-/* Markerar officiella röda dagar */
+/* Ger namnsdagen bättre kontrast när datumet är dagens datum */
+
+.today .nameday-name {
+  color: var(--color-text);
+}
 
 /* Markerar officiella röda dagar */
 
@@ -713,7 +717,7 @@ main {
     display: block;
     max-width: 100%;
     color: var(--color-muted);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: normal;
     line-height: 1.2;
     text-align: right;

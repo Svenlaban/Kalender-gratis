@@ -5,7 +5,7 @@
  * @param {number} year
  * @returns {Promise<Array>}
  */
-async function loadNameDays(year) {
+async function loadCalendarData(year) {
   const response = await fetch(
     `https://sholiday.faboul.se/dagar/v2.1/${year}`
   );

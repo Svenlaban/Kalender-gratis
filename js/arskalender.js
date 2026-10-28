@@ -33,11 +33,8 @@ const requestedYear = Number(urlParameters.get("year"));
 // Visar aktuellt år som standard
 let displayedYear = today.getFullYear();
 
-// Innehåller årets hämtade helgdagar
-let holidays = [];
-
-// Dessa högtidsaftnar är inte officiella röda dagar
-const holidayEves = ["Midsommarafton", "Julafton", "Nyårsafton"];
+// Innehåller årets hämtade kalenderdata
+let calendarData = [];
 
 // Använder året från länken om värdet är giltigt
 if (Number.isInteger(requestedYear) && requestedYear > 0) {
@@ -137,15 +134,42 @@ function createMonthCalendar(month) {
       dayElement.classList.add("year-day");
       dayElement.textContent = calendarDate.getDate();
 
-      // Kontrollerar om datumet är en svensk helg- eller högtidsdag
+      // Hämtar kalenderinformationen för det aktuella datumet
       const dateKey = formatDateKey(calendarDate);
 
-      const holiday = holidays.find(function (item) {
-        return item.date === dateKey;
+      const calendarDayData = calendarData.find(function (item) {
+        return item.datum === dateKey;
       });
 
-      if (holiday && calendarDate.getMonth() === month) {
-        dayElement.title = holiday.localName;
+      if (calendarDayData && calendarDate.getMonth() === month) {
+        const descriptions = [];
+
+        // Kontrollerar om dagen är en högtidsafton
+        const isHolidayEve =
+          calendarDayData.helgdagsafton ||
+          (calendarDayData["arbetsfri dag"] === "Ja" &&
+            calendarDayData["röd dag"] === "Nej" &&
+            calendarDayData.helgdag);
+
+        if (isHolidayEve) {
+          const holidayName =
+            calendarDayData.helgdagsafton || calendarDayData.helgdag;
+
+          dayElement.classList.add("holiday-eve");
+          descriptions.push(holidayName);
+        } else if (calendarDayData["röd dag"] === "Ja") {
+          dayElement.classList.add("public-holiday");
+
+          if (calendarDayData.helgdag) {
+            descriptions.push(calendarDayData.helgdag);
+          }
+        }
+
+        // Lägger till namnsdagar i datumrutans beskrivning
+        if (calendarDayData.namnsdag.length > 0) {
+          const names = calendarDayData.namnsdag.join(", ");
+          descriptions.push("Namnsdag: " + names);
+        }
 
         const readableDate = calendarDate.toLocaleDateString("sv-SE", {
           weekday: "long",
@@ -154,16 +178,14 @@ function createMonthCalendar(month) {
           year: "numeric",
         });
 
-        dayElement.setAttribute(
-          "aria-label",
-          readableDate + ", " + holiday.localName,
-        );
+        let accessibleDescription = readableDate;
 
-        if (holidayEves.includes(holiday.localName)) {
-          dayElement.classList.add("holiday-eve");
-        } else {
-          dayElement.classList.add("public-holiday");
+        if (descriptions.length > 0) {
+          dayElement.title = descriptions.join(" – ");
+          accessibleDescription += ". " + descriptions.join(". ");
         }
+
+        dayElement.setAttribute("aria-label", accessibleDescription);
       }
 
       // Markerar datum från angränsande månader
@@ -214,14 +236,14 @@ function renderYearCalendar() {
 }
 
 /**
- * Hämtar helgdagar och uppdaterar årskalendern.
+ * Hämtar kalenderdata och uppdaterar årskalendern.
  */
 async function updateYearCalendar() {
   try {
-    holidays = await loadPublicHolidays(displayedYear);
+    calendarData = await loadCalendarData(displayedYear);
   } catch (error) {
     console.error(error);
-    holidays = [];
+    calendarData = [];
   }
 
   renderYearCalendar();

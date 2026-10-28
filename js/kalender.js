@@ -2,6 +2,7 @@
 
 // Hämtar kalenderns element från HTML
 const calendar = document.querySelector("#calendar");
+const calendarStatus = document.querySelector("#calendar-status");
 const yearLink = document.querySelector("#year-link");
 const previousMonthButton = document.querySelector("#previous-month");
 const nextMonthButton = document.querySelector("#next-month");
@@ -57,7 +58,7 @@ if (
   displayedMonth = requestedMonth - 1;
 }
 
-// Innehåller årets hämtade namnsdagar
+// Innehåller årets hämtade kalenderdata
 let calendarData = [];
 
 /**
@@ -267,14 +268,22 @@ function renderCalendar() {
  * Hämtar årets kalenderdata och uppdaterar kalendern.
  */
 async function updateCalendar() {
+  calendarStatus.textContent = "Hämtar kalenderinformation...";
+  calendar.setAttribute("aria-busy", "true");
+
   try {
     calendarData = await loadCalendarData(displayedYear);
+    calendarStatus.textContent = "";
   } catch (error) {
     console.error(error);
     calendarData = [];
+
+    calendarStatus.textContent =
+      "Kalenderinformationen kunde inte hämtas. Datum och veckonummer visas fortfarande, men helgdagar och namnsdagar kan saknas.";
   }
 
   renderCalendar();
+  calendar.setAttribute("aria-busy", "false");
 }
 
 // Visar föregående månad

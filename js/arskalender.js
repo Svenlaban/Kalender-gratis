@@ -2,6 +2,7 @@
 
 // Hämtar årskalenderns element från HTML
 const yearGrid = document.querySelector("#year-grid");
+const yearCalendarStatus = document.querySelector("#year-calendar-status");
 const yearHeading = document.querySelector("#year-heading");
 const previousYearButton = document.querySelector("#previous-year");
 const nextYearButton = document.querySelector("#next-year");
@@ -239,14 +240,22 @@ function renderYearCalendar() {
  * Hämtar kalenderdata och uppdaterar årskalendern.
  */
 async function updateYearCalendar() {
+  yearCalendarStatus.textContent = "Hämtar kalenderinformation...";
+  yearGrid.setAttribute("aria-busy", "true");
+
   try {
     calendarData = await loadCalendarData(displayedYear);
+    yearCalendarStatus.textContent = "";
   } catch (error) {
     console.error(error);
     calendarData = [];
+
+    yearCalendarStatus.textContent =
+      "Kalenderinformationen kunde inte hämtas. Datum och veckonummer visas fortfarande, men helgdagar och namnsdagar kan saknas.";
   }
 
   renderYearCalendar();
+  yearGrid.setAttribute("aria-busy", "false");
 }
 
 // Visar föregående år

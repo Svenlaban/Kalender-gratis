@@ -154,6 +154,21 @@ main {
   background-color: var(--color-surface);
 }
 
+/* Visar status och fel vid hämtning av kalenderdata */
+
+.calendar-status {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-border);
+  background-color: #fff4d6;
+  color: #6b4700;
+  text-align: center;
+}
+
+.calendar-status:empty {
+  display: none;
+}
+
 .calendar-controls {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -691,18 +706,18 @@ main {
     line-height: 1.2;
     text-align: right;
   }
-}
 
-/* Visar namnsdagar i månadskalenderns större datumrutor */
+  /* Visar namnsdagar i månadskalenderns större datumrutor */
 
-.nameday-name {
-  display: block;
-  max-width: 100%;
-  color: var(--color-muted);
-  font-size: 0.65rem;
-  font-weight: normal;
-  line-height: 1.2;
-  text-align: right;
+  .nameday-name {
+    display: block;
+    max-width: 100%;
+    color: var(--color-muted);
+    font-size: 0.65rem;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: right;
+  }
 }
 
 /* Visar tre kolumner av årskalender på bredare skärmar  */

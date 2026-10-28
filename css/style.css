@@ -369,30 +369,21 @@ main {
 
 /* Om Kalender Gratis */
 
-.about,
-.features,
-.contact {
-  max-width: 1100px;
-  margin: 0 auto 2rem;
-}
-
-.about {
-  padding: 1.5rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
-  background-color: var(--color-surface);
-  text-align: center;
-}
-
 .about h1 {
   margin-top: 0;
   color: var(--color-primary);
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .about p {
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 75ch;
+  margin: 0 auto 1rem;
+  text-align: left;
+}
+
+.about p:last-child {
+  margin-bottom: 0;
 }
 
 /* Funktioner */
@@ -555,6 +546,55 @@ main {
 
 .nameday-name {
   display: none;
+}
+
+/* Om-sidans innehåll */
+
+.about,
+.features,
+.data-source,
+.contact {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+}
+
+.about,
+.data-source {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-surface);
+}
+
+.about h1,
+.data-source h2 {
+  margin-top: 0;
+}
+
+.about p,
+.data-source p {
+  max-width: 75ch;
+}
+
+.data-source {
+  border-left: 0.4rem solid var(--color-accent);
+}
+
+.data-source a {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.data-source a:hover,
+.data-source a:focus-visible {
+  color: var(--color-accent);
+  text-decoration-thickness: 0.15rem;
+}
+
+.source-note {
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
 }
 
 /* Desktop */
